@@ -1,0 +1,31 @@
+# This is the server logic of Temperature Converter Application 
+
+library(shiny)
+
+# Define server logic required to draw a histogram
+shinyServer(function(input,output) {
+        
+        values <- reactiveValues()
+        
+        observe({
+                input$FindTemp
+                values$temp <- isolate({
+                        
+                        (input$int_value_Celsius * 1.8) + 32
+                        
+                })
+        })
+        
+        # Display your Input values
+        output$input_temperature <- renderText({
+                input$FindTemp
+                paste("Input Temperature in Degrees Celsius is:", isolate(input$int_value_Celsius)) 
+        })
+        
+        # Display Converted Tempereture
+        output$temp_result <- renderText({
+                if(input$FindTemp == 0) ""
+                else
+                        paste("Equivalent Temperature in Degrees Fahrenheit is:", values$temp)
+        })
+}) 

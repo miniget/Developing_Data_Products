@@ -1,0 +1,46 @@
+# This is the user-interface for Temperature Converter Application
+
+library(shiny)
+
+# Define UI for application that draws a histogram
+shinyUI(fluidPage(
+        
+        titlePanel("Temperature Converter"),
+        
+        sidebarLayout(
+                sidebarPanel( 
+                        
+                        helpText("Temperature conversion from Degrees Celsius into Degrees Fahrenheit is a common day to day activity, this Application helps you to easily find it out."),            
+                        br(),           
+                        numericInput("int_value_Celsius",label = h4("Temperature in Degrees Celsius"),min = -273.15 , max = 1600, 0), 
+                        br(),
+                        
+                        br(),   
+                        actionButton("FindTemp", label = "CONVERT")    
+                        
+                ),
+                mainPanel
+                (
+                        tabsetPanel
+                        (
+                                tabPanel("Convert Temperature",
+                                         p(h4("Here is the input Temperature:")),
+                                         textOutput("input_temperature"),
+                                         br(),
+                                         p(h4("Converted Temperature is Displayed Below:")),
+                                         textOutput("temp_result")
+                                ),
+                                tabPanel(
+                                        "Documentation",
+                                        p(h4("Temperature Converter Application")),
+                                        br(),
+                                        helpText("This Simple Application Converts Temperature from Degrees Celsius into Degree Fahrenheit"),
+                                        p(h3("Why Temperature Conversion is important?")),
+                                        helpText("There are several scales used to measure Temperature. Degrees Celsius and Degrees Fahrenheit are the most commonly used teperature scales this days. Degrees Fahrenheit, (developed in the early 1700's by G. Daniel Fahrenheit), are used to record surface temperature measurements by meteorologists in the United States. However, since most of the rest of the world uses degrees Celsius (developed in the 18th Century), it is important to be able to convert from units of degrees Fahrenheit to degrees Celsius or vice versa.")
+                                )
+                                
+                                
+                        )
+                )
+        )
+))
